@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space-Bridge-Test", "Space-Bridge-Test\Space-Bridge-Test.csproj", "{EA804925-3DCD-4F08-A5A2-5D9A2E4EEE65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA804925-3DCD-4F08-A5A2-5D9A2E4EEE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA804925-3DCD-4F08-A5A2-5D9A2E4EEE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA804925-3DCD-4F08-A5A2-5D9A2E4EEE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA804925-3DCD-4F08-A5A2-5D9A2E4EEE65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

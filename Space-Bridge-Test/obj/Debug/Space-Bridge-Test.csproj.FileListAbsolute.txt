@@ -1,0 +1,6 @@
+D:\Programing\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe.config
+D:\Programing\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe
+D:\Programing\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pdb
+D:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache
+D:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.exe
+D:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.pdb
