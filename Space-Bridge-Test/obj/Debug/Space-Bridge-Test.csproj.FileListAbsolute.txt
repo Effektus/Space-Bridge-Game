@@ -4,3 +4,9 @@ D:\Programing\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pd
 D:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache
 D:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.exe
 D:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.pdb
+E:\Project\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe.config
+E:\Project\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.exe
+E:\Project\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.pdb
+E:\Project\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache
+E:\Project\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe
+E:\Project\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pdb

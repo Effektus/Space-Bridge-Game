@@ -1,37 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading;
 
 public class SpaceBridgeTest
 {
-    //1.Structure "Object" contains four variables - coordinates, color, and its symbols.
-    class userObject
+    public class UserObject
     {
-        public int x;
-        public int y;
-        public ConsoleColor color;
-        public string symbol;
-        public userObject(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green)
+        private int x;
+        private int y;
+        private ConsoleColor color;
+        private string symbol;
+
+        public UserObject(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green)
         {
-            this.x = x;
-            this.y = y;
-            this.symbol = symbol;
-            this.color = color;
+            this.X = x;
+            this.Y = y;
+            this.Symbol = symbol;
+            this.Color = color;
         }
+
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Symbol { get; set; }
+        public ConsoleColor Color { get; set; }
     }
-    class Object
+    public class Object
     {
-        public int x;
-        public int y;
-        public ConsoleColor color;
-        public string symbol;
+        private int x;
+        private int y;
+        private ConsoleColor color;
+        private string symbol;
+
         public Object(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green)
         {
-            this.x = x;
-            this.y = y;
-            this.symbol = symbol;
-            this.color = color;
+
+            this.X = x;
+            this.Y = y;
+            this.Symbol = symbol;
+            this.Color = color;
         }
+
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Symbol { get; set; }
+        public ConsoleColor Color { get; set; }
     }
 
     public static void Main()
@@ -48,7 +61,7 @@ public class SpaceBridgeTest
         int y = Console.WindowHeight - 3;
         string symbol = "___";
         ConsoleColor color = ConsoleColor.DarkRed;
-        userObject userObject = new userObject(x, y, symbol, color);
+        UserObject userObject = new UserObject(x, y, symbol, color);
 
         List<Object> objects = new List<Object>();
         Random randomGenerator = new Random();
@@ -70,36 +83,35 @@ public class SpaceBridgeTest
                 }
                 if (pressedKey.Key == ConsoleKey.LeftArrow)
                 {
-                    if (userObject.x > 15)
+                    if (userObject.X > 15)
                     {
-                        userObject.x -= 9;
+                        userObject.X -= 9;
                     }
                 }
                 else if (pressedKey.Key == ConsoleKey.RightArrow)
                 {
-                    if (userObject.x + 1 < playfieldWidth - 7)
+                    if (userObject.X + 1 < playfieldWidth - 7)
                     {
-                        userObject.x += 9;
+                        userObject.X += 9;
                     }
                 }
             }
-            //Struct was converted to Class , so now we can change (y) easily!
 
-            if (objects[0].y < Console.WindowHeight)
+            if (objects[0].Y < Console.WindowHeight)
             {
-                objects[0].y = objects[0].y + 1;
+                objects[0].Y = objects[0].Y + 1;
             }
-            if (objects[0].x < Console.WindowWidth)
+            if (objects[0].X < Console.WindowWidth)
             {
-                if (objects[0].x == 15)
+                if (objects[0].X == 15)
                 {
-                    objects[0].x--;
+                    objects[0].X--;
                 }
-                objects[0].x++;
+                objects[0].X++;
             }
             if (objects.Count > 0)
             {
-                if (objects[0].y == userObject.y && objects[0].x == userObject.x + 1)
+                if (objects[0].Y == userObject.Y && objects[0].X == userObject.X + 1)
                 {
                     points++;
                 }
@@ -111,10 +123,10 @@ public class SpaceBridgeTest
             //Print other object
             foreach (Object element in objects)
             {
-                PrintOnPosition(element.x, element.y, element.symbol, element.color);
+                PrintOnPosition(element.X, element.Y, element.Symbol, element.Color);
             }
             //8.print our object
-            PrintOnPosition(userObject.x, userObject.y, userObject.symbol, userObject.color);
+            PrintOnPosition(userObject.X, userObject.Y, userObject.Symbol, userObject.Color);
             //printing userObject lives
 
             PrintOnPosition(41, 0, "P:" + points.ToString(), ConsoleColor.DarkRed);
@@ -127,7 +139,7 @@ public class SpaceBridgeTest
             //remove objects which are outside the field
             if (objects.Count > 0)
             {
-                if (objects[0].y == Console.WindowHeight - 1)
+                if (objects[0].Y == Console.WindowHeight - 1)
                 {
                     objects.RemoveAt(0);
                 }
