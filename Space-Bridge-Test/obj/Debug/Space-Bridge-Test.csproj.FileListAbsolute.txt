@@ -16,3 +16,9 @@ D:\TeamWork\Space-Bridge\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bri
 D:\TeamWork\Space-Bridge\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe
 D:\TeamWork\Space-Bridge\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pdb
 D:\TeamWork\Space-Bridge\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache
+E:\newGame\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe.config
+E:\newGame\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.exe
+E:\newGame\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.pdb
+E:\newGame\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe
+E:\newGame\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pdb
+E:\newGame\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache

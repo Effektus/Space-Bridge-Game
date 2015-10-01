@@ -12,7 +12,7 @@ namespace Space_Bridge_Test
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
             Console.BackgroundColor = ConsoleColor.Black;//color of playfield
-                                                         //3.Make object
+                                                         
             int xCoordinate = 23;
             int yCoordinate = Console.WindowHeight - 3;
             string symbolForBridge = "___";
@@ -20,6 +20,7 @@ namespace Space_Bridge_Test
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge);
             Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green);
 
+            int lives = 3;
             int points = 0;
             double speed = 100.0;
             double acceleration = 2;
@@ -55,6 +56,18 @@ namespace Space_Bridge_Test
                     {
                         points++;
                         bridgeHitted = true;
+                    }
+                    if (cosmonaut.Y >= Console.WindowHeight)
+                    {
+                        cosmonaut = new Object(9, 0, "$");
+                     
+                        if (lives < 0)
+                        {
+                            cosmonaut = new Object(9, 0, "$");
+                            PrintOnPosition(10, 10, "GAME OVER", ConsoleColor.DarkRed);
+                         
+                        }
+                        lives--;
                     }
                 }
                 if (bridgeHitted)
