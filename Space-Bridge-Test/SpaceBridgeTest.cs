@@ -8,6 +8,7 @@ namespace Space_Bridge_Test
     {
         public static void Main()
         {
+            Console.Title = "Space Bridge (Dolars) by Team Sulorine";
             //2.Draw playfield
             const int playfieldWidth = 35;
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
