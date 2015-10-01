@@ -39,7 +39,7 @@ namespace Space_Bridge_Test
                     speed = 400;
                 }
                 Thread.Sleep(500 - (int)speed);
-                int chance = rnd.Next(0, 50);
+                int chance = rnd.Next(0, 70);
                 //Add more cosmonauts
                 if (points > 2 && chance < 70 && cosmonauts.Count < 3)
                 {
