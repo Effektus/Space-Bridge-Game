@@ -11,15 +11,14 @@ namespace Space_Bridge_Test
             const int playfieldWidth = 35;
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
-            Console.BackgroundColor = ConsoleColor.Black;//color of playfield
+            Console.BackgroundColor = ConsoleColor.Gray;//color of playfield
                                                          
             int xCoordinate = 23;
             int yCoordinate = Console.WindowHeight - 3;
-            string symbolForBridge = "___";
+            string symbolForBridge = "---";
             ConsoleColor colorOfBridge = ConsoleColor.DarkRed;
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge);
             Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green);
-
             int lives = 3;
             int points = 0;
             double speed = 100.0;
@@ -92,6 +91,10 @@ namespace Space_Bridge_Test
 
                 //7.Clear the console with 
                 Console.Clear();
+                //8. Print Lives
+                PrintOnPosition(41, 7, "\\", ConsoleColor.Green);
+                PrintOnPosition(42, 7, "___", ConsoleColor.Green);
+                PrintOnPosition(45, 7, "/", ConsoleColor.Green);
 
                 //Print other object               
                 PrintOnPosition(cosmonaut.X, cosmonaut.Y, cosmonaut.Symbol, cosmonaut.Color);
