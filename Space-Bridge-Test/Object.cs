@@ -12,10 +12,10 @@ namespace Space_Bridge_Test
         private int y;
         private ConsoleColor color;
         private string symbol;
-
-        public Object(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green)
+        private bool bridgeHitted;
+        public Object(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green, bool bridgeHitted = false)
         {
-
+            this.BridgeHitted = bridgeHitted;
             this.X = x;
             this.Y = y;
             this.Symbol = symbol;
@@ -26,5 +26,6 @@ namespace Space_Bridge_Test
         public int Y { get; set; }
         public string Symbol { get; set; }
         public ConsoleColor Color { get; set; }
+        public bool BridgeHitted { get; set; }
     }
 }

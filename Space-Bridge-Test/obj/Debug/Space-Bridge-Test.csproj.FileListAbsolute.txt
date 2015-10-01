@@ -28,3 +28,9 @@ E:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.pd
 E:\Programing\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe
 E:\Programing\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pdb
 E:\Programing\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache
+D:\TeamWork\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe.config
+D:\TeamWork\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.exe
+D:\TeamWork\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.pdb
+D:\TeamWork\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.exe
+D:\TeamWork\Space-Bridge-Test\Space-Bridge-Test\bin\Debug\Space-Bridge-Test.pdb
+D:\TeamWork\Space-Bridge-Test\Space-Bridge-Test\obj\Debug\Space-Bridge-Test.csprojResolveAssemblyReference.cache
