@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Threading;
 
 namespace Space_Bridge_Test
@@ -7,120 +6,150 @@ namespace Space_Bridge_Test
     public class SpaceBridge
     {
         public static void Main()
-        {
-            int Points = 0;
-
+        {           
             //2.Draw playfield
-
-            int playfieldWidth = 35;
+            const int playfieldWidth = 35;
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
-            Console.BackgroundColor = ConsoleColor.White;//color of playfield
+            Console.BackgroundColor = ConsoleColor.Black;//color of playfield
+                                                         //3.Make object
+            int xCoordinate = 23;
+            int yCoordinate = Console.WindowHeight - 3;
+            string symbolForBridge = "___";
+            ConsoleColor colorOfBridge = ConsoleColor.DarkRed;
+            Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge);
+            Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green);
 
-            //3.Make object
-
-            int x = 23;
-            int y = Console.WindowHeight - 3;
-            string symbol = "___";
-            ConsoleColor color = ConsoleColor.Black;
-            Object userObject = new Object(x, y, symbol, color);
-            Object newObject = new Object(9, 0, "$", ConsoleColor.Black);
+            int points = 0;
+            double speed = 100.0;
+            double acceleration = 2;
             bool bridgeHitted = false;
             while (true)
             {
-                //4.Move the bridge
-                while (Console.KeyAvailable)
+                speed += acceleration;
+                if (speed > 400)
                 {
-                    ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-                    while (Console.KeyAvailable)
-                    {
-                        Console.ReadKey(true);
-                    }
-                    if (pressedKey.Key == ConsoleKey.LeftArrow)
-                    {
-                        if (userObject.X > 15)
-                        {
-                            userObject.X -= 9;
-                        }
-                    }
-                    else if (pressedKey.Key == ConsoleKey.RightArrow)
-                    {
-                        if (userObject.X + 1 < playfieldWidth - 7)
-                        {
-                            userObject.X += 9;
-                        }
-                    }
+                    speed = 400;
                 }
+                Thread.Sleep(500 - (int)speed);
+
+                //4.Move the bridge
+                MoveTheBridge(bridge, playfieldWidth);
+
                 //Moving our alien....
                 if (!bridgeHitted)
                 {
-                    if (newObject.Y < Console.WindowHeight)
+                    if (cosmonaut.Y < Console.WindowHeight)
                     {
-                        newObject.Y++;
+                        cosmonaut.Y++;
                     }
-                    if (newObject.X < Console.WindowWidth)
+                    if (cosmonaut.X < Console.WindowWidth)
                     {
-                        if (newObject.X == 15)
+                        if (cosmonaut.X == 15)
                         {
-                            newObject.X--;
+                            cosmonaut.X--;
                         }
-                        newObject.X++;
+                        cosmonaut.X++;
                     }
-                    if (newObject.Y == userObject.Y && newObject.X == userObject.X + 1)
+                    if (cosmonaut.Y == bridge.Y && cosmonaut.X == bridge.X + 1)
                     {
-                        Points++;
+                        points++;
                         bridgeHitted = true;
                     }
                 }
                 if (bridgeHitted)
                 {
-                    if (newObject.Y > Console.WindowHeight - 7)
+                    if (cosmonaut.Y > Console.WindowHeight - 7)
                     {
-                        newObject.Y--;
+                        cosmonaut.Y--;
                     }
                     else
                     {
                         bridgeHitted = false;
                     }
-                    if (newObject.X < Console.WindowWidth)
+                    if (cosmonaut.X < Console.WindowWidth)
                     {
-                        newObject.X++;
+                        cosmonaut.X++;
                     }
                 }
-                //remove objects which are outside the field and create new
-                if (newObject.X > 42)
+
+                //remove objects which are outside the field and create new                       
+                if (cosmonaut.X > 42)
                 {
-                    newObject = new Object(9, 0, "$", ConsoleColor.Green);
+                    cosmonaut = new Object(9, 0, "$");
                 }
+
                 //7.Clear the console with 
                 Console.Clear();
-                //Print other object
-                PrintOnPosition(newObject.X, newObject.Y, newObject.Symbol, newObject.Color);
+
+                //Print other object               
+                PrintOnPosition(cosmonaut.X, cosmonaut.Y, cosmonaut.Symbol, cosmonaut.Color);
+
                 //8.print our object
-                PrintOnPosition(userObject.X, userObject.Y, userObject.Symbol, userObject.Color);
+                PrintOnPosition(bridge.X, bridge.Y, bridge.Symbol, bridge.Color);
+
                 //printing points
-                PrintOnPosition(20, 0, "Points: " + Points.ToString(), ConsoleColor.DarkRed);
+                PrintOnPosition(41, 0, "P:" + points, ConsoleColor.DarkRed);
+
                 //Print board for the field
                 PrintTheSideBoard(8);
                 PrintTheSideBoard(40);
 
-                //9.Draw info
-                //10.Slow down program
-                Thread.Sleep(500);
             }
         }
 
+        /// <summary>
+        /// Move the bridge with keys.
+        /// </summary>
+        /// <param name="userObject">bridge object</param>
+        /// <param name="playfieldWidth">play field</param>
+        private static void MoveTheBridge(Object userObject, int playfieldWidth)
+        {
+            while (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                }
+                if (pressedKey.Key == ConsoleKey.LeftArrow)
+                {
+                    if (userObject.X > 15)
+                    {
+                        userObject.X -= 9;
+                    }
+                }
+                else if (pressedKey.Key == ConsoleKey.RightArrow)
+                {
+                    if (userObject.X + 1 < playfieldWidth - 7)
+                    {
+                        userObject.X += 9;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Print the side board
+        /// </summary>
+        /// <param name="x">x coordinate</param>
         private static void PrintTheSideBoard(int x)
         {
             for (int i = 0; i < Console.WindowHeight; i++)
             {
-                PrintOnPosition(x, i, "|", ConsoleColor.Black);
+                PrintOnPosition(x, i, "|", ConsoleColor.White);
             }
         }
-        //Method which print object 
-        static void PrintOnPosition(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green)
+
+        /// <summary>
+        /// Print on position.Console.SetCursorPosition move our cursor in place of what we write.
+        /// </summary>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="symbol">our symbol</param>
+        /// <param name="color">color Of symbol</param>
+        private static void PrintOnPosition(int x, int y, string symbol, ConsoleColor color = ConsoleColor.Green)
         {
-            //Console.SetCursorPosition move our cursor in place of what we write.
             Console.SetCursorPosition(x, y);
             Console.ForegroundColor = color;
             Console.Write(symbol);
