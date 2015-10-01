@@ -18,7 +18,7 @@ namespace Space_Bridge_Test
             string symbolForBridge = "---";
             ConsoleColor colorOfBridge = ConsoleColor.DarkRed;
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge);
-            Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green);
+            Object cosmonaut = new Object(9, 0, "@@", ConsoleColor.Green);
             int lives = 3;
             int points = 0;
             double speed = 100.0;
@@ -58,7 +58,7 @@ namespace Space_Bridge_Test
                     }
                     if (cosmonaut.Y >= Console.WindowHeight)
                     {
-                        cosmonaut = new Object(9, 0, "$");                 
+                        cosmonaut = new Object(9, 0, "@@");                 
                         lives--;
                         if (lives == 0)
                         {
