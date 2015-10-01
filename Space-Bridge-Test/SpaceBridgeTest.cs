@@ -9,18 +9,22 @@ namespace Space_Bridge_Test
         public static void Main()
         {
             int Points = 0;
+
             //2.Draw playfield
+
             int playfieldWidth = 35;
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
-            Console.BackgroundColor = ConsoleColor.Black;//color of playfield
-                                                         //3.Make object
+            Console.BackgroundColor = ConsoleColor.White;//color of playfield
+
+            //3.Make object
+
             int x = 23;
             int y = Console.WindowHeight - 3;
             string symbol = "___";
-            ConsoleColor color = ConsoleColor.DarkRed;
+            ConsoleColor color = ConsoleColor.Black;
             Object userObject = new Object(x, y, symbol, color);
-            Object newObject = new Object(9, 0, "$", ConsoleColor.Green);
+            Object newObject = new Object(9, 0, "$", ConsoleColor.Black);
             bool bridgeHitted = false;
             while (true)
             {
@@ -95,7 +99,7 @@ namespace Space_Bridge_Test
                 //8.print our object
                 PrintOnPosition(userObject.X, userObject.Y, userObject.Symbol, userObject.Color);
                 //printing points
-                PrintOnPosition(41, 0, "P:" + Points.ToString(), ConsoleColor.DarkRed);
+                PrintOnPosition(20, 0, "Points: " + Points.ToString(), ConsoleColor.DarkRed);
                 //Print board for the field
                 PrintTheSideBoard(8);
                 PrintTheSideBoard(40);
@@ -110,7 +114,7 @@ namespace Space_Bridge_Test
         {
             for (int i = 0; i < Console.WindowHeight; i++)
             {
-                PrintOnPosition(x, i, "|", ConsoleColor.White);
+                PrintOnPosition(x, i, "|", ConsoleColor.Black);
             }
         }
         //Method which print object 
