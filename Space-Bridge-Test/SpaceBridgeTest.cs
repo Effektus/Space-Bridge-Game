@@ -91,10 +91,14 @@ namespace Space_Bridge_Test
 
                 //7.Clear the console with 
                 Console.Clear();
-                //8. Print Lives
+
+                //8. Print Basket
                 PrintOnPosition(41, 7, "\\", ConsoleColor.Green);
                 PrintOnPosition(42, 7, "___", ConsoleColor.Green);
                 PrintOnPosition(45, 7, "/", ConsoleColor.Green);
+
+                //Print Lives
+                PrintOnPosition(41, 1, "Lives:" + lives.ToString(), ConsoleColor.DarkRed);
 
                 //Print other object               
                 PrintOnPosition(cosmonaut.X, cosmonaut.Y, cosmonaut.Symbol, cosmonaut.Color);
@@ -103,7 +107,7 @@ namespace Space_Bridge_Test
                 PrintOnPosition(bridge.X, bridge.Y, bridge.Symbol, bridge.Color);
 
                 //printing points
-                PrintOnPosition(41, 0, "P:" + points, ConsoleColor.DarkRed);
+                PrintOnPosition(41, 0, "Point:" + points, ConsoleColor.DarkRed);
 
                 //Print board for the field
                 PrintTheSideBoard(8);
