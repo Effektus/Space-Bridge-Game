@@ -12,15 +12,15 @@ namespace Space_Bridge_Test
             const int playfieldWidth = 35;
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
-            Console.BackgroundColor = ConsoleColor.Gray;//color of playfield
+            Console.BackgroundColor = ConsoleColor.Black;//color of playfield
 
             int xCoordinate = 23;
             int yCoordinate = Console.WindowHeight - 3;
             string symbolForBridge = "___";
-            ConsoleColor colorOfBridge = ConsoleColor.Black;
+            ConsoleColor colorOfBridge = ConsoleColor.White;
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge, false);
             bool bridgeHitted = false;
-            Object cosmonaut = new Object(9, 0, "$", ConsoleColor.DarkGreen, bridgeHitted);
+            Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green, bridgeHitted);
             int lives = 3;
             int points = 0;
             double speed = 10.0;
@@ -28,6 +28,9 @@ namespace Space_Bridge_Test
             List<Object> cosmonauts = new List<Object>();
             cosmonauts.Add(cosmonaut);
             Random rnd = new Random();
+
+            PrintOnPosition(20, 5, "START GAME", ConsoleColor.Red);
+
             while (true)
             {
                 speed += acceleration;
@@ -130,10 +133,12 @@ namespace Space_Bridge_Test
                 Console.Clear();
                 //8. Print Basket
                 PrintOnPosition(41, 7, "\\", ConsoleColor.White);
-                PrintOnPosition(42, 7, "___", ConsoleColor.White);
+                PrintOnPosition(41, 8, "|", ConsoleColor.White);
+                PrintOnPosition(45, 8, "|", ConsoleColor.White);
+                PrintOnPosition(42, 8, "___", ConsoleColor.White);
                 PrintOnPosition(45, 7, "/", ConsoleColor.White);
                 //Print Lives
-                PrintOnPosition(39, 1, "Lives:" + lives.ToString(), ConsoleColor.Red);
+                PrintOnPosition(38, 1, "Lives:" + lives.ToString(), ConsoleColor.Red);
                 //Print other object  
                 foreach (var cosmo in cosmonauts)
                 {
@@ -146,10 +151,11 @@ namespace Space_Bridge_Test
                 PrintOnPosition(bridge.X, bridge.Y, bridge.Symbol, bridge.Color);
 
                 //printing points
-                PrintOnPosition(39, 0, "Dolars:" + points, ConsoleColor.DarkRed);
+                PrintOnPosition(38, 0, "Dolars:" + points, ConsoleColor.Green);
                 
             }
-            PrintOnPosition(8, 5, "Game Over!!!", ConsoleColor.DarkRed);
+            PrintOnPosition(20, 5, "GAME OVER!!!", ConsoleColor.DarkRed);
+            Console.WriteLine();
         }
 
         /// <summary>
