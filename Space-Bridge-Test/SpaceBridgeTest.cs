@@ -60,13 +60,7 @@ namespace Space_Bridge_Test
                     if (cosmonaut.Y >= Console.WindowHeight)
                     {
                         cosmonaut = new Object(9, 0, "$");
-                     
-                        if (lives < 0)
-                        {
-                            cosmonaut = new Object(9, 0, "$");
-                            PrintOnPosition(10, 10, "GAME OVER", ConsoleColor.DarkRed);
-                         
-                        }
+                  
                         lives--;
                     }
                 }
