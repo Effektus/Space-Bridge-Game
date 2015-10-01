@@ -59,11 +59,15 @@ namespace Space_Bridge_Test
                     }
                     if (cosmonaut.Y >= Console.WindowHeight)
                     {
-                        cosmonaut = new Object(9, 0, "$");
-                  
+                        cosmonaut = new Object(9, 0, "$");                 
                         lives--;
+                        if (lives == 0)
+                        {
+                            break;
+                        }
                     }
                 }
+
                 if (bridgeHitted)
                 {
                     if (cosmonaut.Y > Console.WindowHeight - 7)
@@ -101,8 +105,8 @@ namespace Space_Bridge_Test
                 //Print board for the field
                 PrintTheSideBoard(8);
                 PrintTheSideBoard(40);
-
             }
+            PrintOnPosition(8, 5, "Game Over!!!", ConsoleColor.DarkRed);
         }
 
         /// <summary>
