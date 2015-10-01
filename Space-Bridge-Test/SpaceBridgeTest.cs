@@ -11,7 +11,7 @@ namespace Space_Bridge_Test
             const int playfieldWidth = 35;
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
-            Console.BackgroundColor = ConsoleColor.Gray;//color of playfield
+            Console.BackgroundColor = ConsoleColor.DarkGray;//color of playfield
                                                          
             int xCoordinate = 23;
             int yCoordinate = Console.WindowHeight - 3;
