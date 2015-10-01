@@ -133,7 +133,7 @@ namespace Space_Bridge_Test
                 PrintOnPosition(42, 7, "___", ConsoleColor.White);
                 PrintOnPosition(45, 7, "/", ConsoleColor.White);
                 //Print Lives
-                PrintOnPosition(39, 1, "Lives:" + lives.ToString(), ConsoleColor.DarkRed);
+                PrintOnPosition(39, 1, "Lives:" + lives.ToString(), ConsoleColor.Red);
                 //Print other object  
                 foreach (var cosmo in cosmonauts)
                 {
