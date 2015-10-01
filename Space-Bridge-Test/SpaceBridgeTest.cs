@@ -23,8 +23,8 @@ namespace Space_Bridge_Test
             Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green, bridgeHitted);
             int lives = 3;
             int points = 0;
-            double speed = 100.0;
-            double acceleration = 2;
+            double speed = 10.0;
+            double acceleration = 0.01;
             List<Object> cosmonauts = new List<Object>();
             cosmonauts.Add(cosmonaut);
             Random rnd = new Random();
@@ -38,10 +38,10 @@ namespace Space_Bridge_Test
                 Thread.Sleep(500 - (int)speed);
                 int chance = rnd.Next(0, 100);
                 //Add more cosmonauts
-                if (points > 1 && chance < 50 && cosmonauts.Count < 3)
+                if (points > 2 && chance < 70 && cosmonauts.Count < 3)
                 {
                     //check if it is possible to be played
-                    if (cosmonauts.TrueForAll(x => x.X < 20))
+                    if (cosmonauts.TrueForAll(x => x.X < 90))
                     {
                         Object cos = new Object(9, 0, "$", ConsoleColor.Green, false);
                         cosmonauts.Add(cos);
