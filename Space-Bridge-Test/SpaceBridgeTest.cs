@@ -12,7 +12,7 @@ namespace Space_Bridge_Test
          
             const int playfieldWidth = 35;
             const int xCoordinate = 23;
-            const double acceleration = 0.01;
+            const double acceleration = 0.04;
 
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
@@ -72,6 +72,7 @@ namespace Space_Bridge_Test
                         if (cosmonauts[i].Y > Console.WindowHeight - 1)
                         {
                             lives--;
+                            speed += 5;
                             cosmonauts.Remove(cosmonauts[i]);
                             if (cosmonauts.Count == 0)
                             {
@@ -145,7 +146,20 @@ namespace Space_Bridge_Test
                 
             }
 
-            PrintOnPosition(20, 5, "GAME OVER!!!", ConsoleColor.DarkRed);
+            PrintOnPosition(15, 4, "GAME OVER!!!", ConsoleColor.DarkRed);
+            if (points < 10)
+            {
+                PrintOnPosition(10, 5, $"Oooh poor litle baby! Just {points} dolars", ConsoleColor.DarkRed);
+                PlayMusic();
+            }
+            else if (points > 10 && points < 20)
+            {
+                PrintOnPosition(10, 5, $"You have {points} dolars.", ConsoleColor.DarkRed);
+            }
+            else if (points > 20)
+            {
+                PrintOnPosition(10, 5, $"You are rich!!! {points} dolars.", ConsoleColor.DarkRed);
+            }
             Console.WriteLine();
         }
 
@@ -174,6 +188,11 @@ namespace Space_Bridge_Test
             }
         }
 
+        /// <summary>
+        /// Use Thread.Sleep and double speed for control
+        /// </summary>
+        /// <param name="speed">speed</param>
+        /// <param name="acceleration">acceleratino</param>
         private static void SpeedControl(double speed, double acceleration)
         {
             speed += acceleration;
@@ -236,6 +255,12 @@ namespace Space_Bridge_Test
             Console.SetCursorPosition(x, y);
             Console.ForegroundColor = color;
             Console.Write(symbol);
+        }
+        public static void PlayMusic()
+        {
+            Console.Beep(528, 1000); Console.Beep(440, 1000); Console.Beep(419, 1000);
+            Console.Beep(495, 1000); Console.Beep(660, 1000); Console.Beep(528, 1000);
+            Console.Beep(594, 1000);
         }
     }
 }
