@@ -72,6 +72,7 @@ namespace Space_Bridge_Test
                         if (cosmonauts[i].Y > Console.WindowHeight - 1)
                         {
                             lives--;
+                            Console.Beep(320, 500); Console.Beep(320, 500);
                             speed += 5;
                             cosmonauts.Remove(cosmonauts[i]);
                             if (cosmonauts.Count == 0)
@@ -256,6 +257,10 @@ namespace Space_Bridge_Test
             Console.ForegroundColor = color;
             Console.Write(symbol);
         }
+
+        /// <summary>        
+        /// Sound
+        /// </summary>
         public static void PlayMusic()
         {
             Console.Beep(528, 1000); Console.Beep(440, 1000); Console.Beep(419, 1000);
