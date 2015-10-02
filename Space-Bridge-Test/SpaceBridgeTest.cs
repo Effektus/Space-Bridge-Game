@@ -31,6 +31,7 @@ namespace Space_Bridge_Test
             Random rnd = new Random();
 
             PrintOnPosition(20, 5, "START GAME", ConsoleColor.Red);
+            PlayMusicStart();
             Object cosmonaut = new Object(9, 0, "$", ConsoleColor.Green, false);
             List<Object> cosmonauts = new List<Object>();
             cosmonauts.Add(cosmonaut);
@@ -65,14 +66,14 @@ namespace Space_Bridge_Test
                         if (cosmonauts[i].Y == bridge.Y && cosmonauts[i].X == bridge.X + 1)
                         {
                             points++;
-                            Console.Beep(430, 200);
+                            Console.Beep(678, 200);
                             cosmonauts[i].BridgeHitted = true;
 
                         }
                         if (cosmonauts[i].Y > Console.WindowHeight - 1)
                         {
                             lives--;
-                            Console.Beep(310, 500); Console.Beep(310, 500);
+                            Console.Beep(327, 500); Console.Beep(213, 500);
                             speed += 5;
                             cosmonauts.Remove(cosmonauts[i]);
                             if (cosmonauts.Count == 0)
@@ -151,7 +152,7 @@ namespace Space_Bridge_Test
             if (points < 10)
             {
                 PrintOnPosition(10, 5, $"Oooh poor litle baby! Just {points} dolars", ConsoleColor.DarkRed);
-                PlayMusic();
+                PlayMusicEnd();
             }
             else if (points > 10 && points < 20)
             {
@@ -261,11 +262,17 @@ namespace Space_Bridge_Test
         /// <summary>        
         /// Sound
         /// </summary>
-        public static void PlayMusic()
+        public static void PlayMusicEnd()
         {
-            Console.Beep(528, 1000); Console.Beep(440, 1000); Console.Beep(419, 1000);
-            Console.Beep(495, 1000); Console.Beep(660, 1000); Console.Beep(528, 1000);
-            Console.Beep(594, 1000);
+            Console.Beep(528, 500); Console.Beep(440, 500); Console.Beep(419, 500);
+            Console.Beep(495, 500); Console.Beep(660, 500); Console.Beep(528, 500);
+            Console.Beep(594, 500);
+        }
+        public static void PlayMusicStart()
+        {
+            Console.Beep(659, 200); Console.Beep(659, 200); Thread.Sleep(167);
+            Console.Beep(659, 200); Thread.Sleep(167); Console.Beep(523, 200);
+            Console.Beep(659, 200); Thread.Sleep(200); Console.Beep(784, 200);
         }
     }
 }
