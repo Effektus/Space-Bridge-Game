@@ -65,14 +65,14 @@ namespace Space_Bridge_Test
                         if (cosmonauts[i].Y == bridge.Y && cosmonauts[i].X == bridge.X + 1)
                         {
                             points++;
-                            Console.Beep();
+                            Console.Beep(430, 200);
                             cosmonauts[i].BridgeHitted = true;
 
                         }
                         if (cosmonauts[i].Y > Console.WindowHeight - 1)
                         {
                             lives--;
-                            Console.Beep(320, 500); Console.Beep(320, 500);
+                            Console.Beep(310, 500); Console.Beep(310, 500);
                             speed += 5;
                             cosmonauts.Remove(cosmonauts[i]);
                             if (cosmonauts.Count == 0)
