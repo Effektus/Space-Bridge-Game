@@ -22,7 +22,8 @@ namespace Space_Bridge_Test
             string symbolForBridge = "___";
             ConsoleColor colorOfBridge = ConsoleColor.White;
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge, false);
-
+            Console.Write("Enter your nickname: ");
+            string playerName = Console.ReadLine();
             int lives = 3;
             int points = 0;
             double speed = 10.0;
@@ -82,7 +83,14 @@ namespace Space_Bridge_Test
                                 break;
                             }
                         }
-                        PrintNewLowerState(wallet[i]);
+                        try
+                        {
+                            PrintNewLowerState(wallet[i]);
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            continue;
+                        }
                     }
                     if (lives == 0)
                     {
@@ -119,7 +127,18 @@ namespace Space_Bridge_Test
                 PrintOnPosition(38, 0, "Dollars:" + points);
                 CreateNewObject(wallet);
             }
+            //PlayersScores(points);
+            FinalMessages(points);
 
+        }
+
+        private static void PlayersScores(int points)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void FinalMessages(int points)
+        {
             PrintOnPosition(15, 4, "GAME OVER!!!", ConsoleColor.DarkRed);
             if (points < 10)
             {
