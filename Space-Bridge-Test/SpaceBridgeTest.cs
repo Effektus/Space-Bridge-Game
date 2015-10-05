@@ -28,8 +28,9 @@ namespace Space_Bridge_Test
             bool bridgeHitted = false;
             Random rnd = new Random();
 
-            //PrintOnPosition(20, 5, "START GAME", ConsoleColor.Red);
+            PrintOnPosition(20, 5, "START GAME", ConsoleColor.Red);
             PlayMusicStart();
+            Console.Clear();
             Object dollar = new Object(9, 0, "$", ConsoleColor.Green, false);
             List<Object> wallet = new List<Object>();
             wallet.Add(dollar);
