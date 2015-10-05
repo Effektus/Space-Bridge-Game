@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
+using System.Linq;
 
 namespace Space_Bridge_Test
 {
@@ -127,14 +129,65 @@ namespace Space_Bridge_Test
                 PrintOnPosition(38, 0, "Dollars:" + points);
                 CreateNewObject(wallet);
             }
-            //PlayersScores(points);
+            List<string> plScores = PlayersScores(points,playerName);
+            Console.Clear();
             FinalMessages(points);
+            Console.Clear();
+            PrintScore(plScores);
 
         }
 
-        private static void PlayersScores(int points)
+        private static void PrintScore(List<string> plScore)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("TOP 5 PLAYERS");
+            Dictionary<string, int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
+            int count = 0;
+            dict.OrderByDescending(p=>p.Value);
+            foreach (var score in dict)
+            {
+                Console.WriteLine(score);
+                count++;
+                if (count == 5)
+                {
+                    break;
+                }
+            }
+        }
+
+        private static List<string> PlayersScores(int points,string nick)
+        {
+            Console.Clear();
+            List<string> plScore = new List<string>();
+            if (!File.Exists("score.txt"))
+            {
+                //PrintOnPosition(0, 3, "New high score: " + nick + "Points: " + points.ToString());
+                plScore = new List<string>{ nick + "-" + points.ToString() };
+                File.WriteAllLines("score.txt", plScore);
+            }
+            else
+            {
+                string[] score = File.ReadAllLines("score.txt");
+                plScore = new List<string>(score);
+                Dictionary<string,int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
+                if (!dict.ContainsKey(nick))
+                {
+                    plScore.Add(nick + "-" + points.ToString());
+                }
+                else
+                {
+                    if (dict[nick] < points)
+                    {
+                        dict[nick] = points;
+                    }               
+                    plScore = dict.Select(kvp => kvp.Key + "-" + kvp.Value).ToList();
+                }
+                File.WriteAllLines("score.txt", plScore);
+                //if (points > dict.Values.Max())
+                //{
+                //    PrintOnPosition(0, 3, "New high score: " + nick + "Points: " + points.ToString());
+                //}
+            }
+            return plScore;
         }
 
         private static void FinalMessages(int points)
