@@ -26,10 +26,10 @@ namespace Space_Bridge_Test
             PlayMusicStart();
             Console.Clear();
 
-            int x = 5;
-            int y = 4;
+            int x = 10;
+            int y = 5;
             Console.SetCursorPosition(x, y);
-            Console.Write("Enter your nickname: ");
+            Console.Write("Please enter your nickname: ");
             string playerName = Console.ReadLine();
             Console.Clear();
 
@@ -177,8 +177,8 @@ namespace Space_Bridge_Test
         private static void PrintScore(List<string> plScore)
         {
             int count = 1;
-            Console.BufferHeight = Console.WindowHeight = 25;
-            Console.BufferWidth = Console.WindowWidth = 25;
+            Console.BufferHeight = Console.WindowHeight = 13;
+            Console.BufferWidth = Console.WindowWidth = 49;
             string highScore = "HIGH SCORE";
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"      {highScore}\n");
@@ -271,10 +271,10 @@ namespace Space_Bridge_Test
         /// </summary>
         private static void FinalMessages()
         {
-            PrintOnPosition(15, 4, "GAME OVER!!!", ConsoleColor.DarkRed);
+            PrintOnPosition(19, 4, "GAME OVER!!!", ConsoleColor.DarkRed);
             if (points < 10)
             {
-                PrintOnPosition(10, 5, $"Oooh poor litle baby! Just {points} dollars", ConsoleColor.DarkRed);
+                PrintOnPosition(6, 5, $"Oooh poor litle baby! Just {points} dollars", ConsoleColor.DarkRed);
                 PlayMusicEnd();
             }
             else if (points > 10 && points < 20)
@@ -339,7 +339,7 @@ namespace Space_Bridge_Test
             if (chance < 2)
             {
                
-                    Object dolar = new Object(9, 0, "$", ConsoleColor.Yellow, false);
+                    Object dolar = new Object(9, 0, "$", ConsoleColor.Green, false);
                     wallet.Add(dolar);
                 
             }
