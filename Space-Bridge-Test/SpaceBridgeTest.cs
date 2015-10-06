@@ -9,13 +9,14 @@ namespace Space_Bridge_Test
     public class SpaceBridge
     {
         public static int points = 0;
+        static double speed = 40.0;
         public static void Main()
         {
             Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
 
             const int playfieldWidth = 35;
             const int xCoordinate = 23;
-            const double acceleration = 0.20;
+            const double acceleration = 2;
 
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
@@ -38,13 +39,11 @@ namespace Space_Bridge_Test
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge, false);
            
             
-            int lives = 3;
-          
-            double speed = 40.0;
+            int lives = 3;         
+           
             bool bridgeHitted = false;
             Random rnd = new Random();
-
-      
+     
             Object dollar = new Object(9, 0, "$", ConsoleColor.Green, false);
             List<Object> wallet = new List<Object>();
             wallet.Add(dollar);
@@ -183,11 +182,13 @@ namespace Space_Bridge_Test
             string highScore = "HIGH SCORE";
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"      {highScore}\n");
+
             Dictionary<string, int> listOfPlayers = plScore
                 .Select(l => l.Split('-'))
                 .ToDictionary(a => a[0], a => int.Parse(a[1]));
             
             var listOfOrders = listOfPlayers.OrderByDescending(p => p.Value);
+
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("RANK    SCORE    NAME\n");
             List<ConsoleColor> colors = new List<ConsoleColor>()
@@ -309,13 +310,12 @@ namespace Space_Bridge_Test
         {
             for (int i = 0; i < dollars.Count; i++)
             {
-               
                 if (dollars[i].X > 42)
                 {
-                    points++;
+                    points++;        
                     dollars.Remove(dollars[i]);
                     dollars.Add(new Object(9, 0, "$", ConsoleColor.Green, false));
-                }
+               }          
             }
         }
 
@@ -327,7 +327,7 @@ namespace Space_Bridge_Test
         /// <param name="chance">random number</param>
         private static void AddMoreDollars(int countOfDollars, List<Object> wallet, int chance)
         {
-            if (countOfDollars > 1 && wallet.Count < 4)
+            if (countOfDollars > 2 && wallet.Count < 3)
             {
                 //diff controler
                 if (wallet.TrueForAll(x => x.X < chance))
@@ -336,7 +336,14 @@ namespace Space_Bridge_Test
                     wallet.Add(dolar);
                 }
             }
-      
+            if (chance < 2)
+            {
+               
+                    Object dolar = new Object(9, 0, "$", ConsoleColor.Yellow, false);
+                    wallet.Add(dolar);
+                
+            }
+
         }
 
         /// <summary>

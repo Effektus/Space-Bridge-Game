@@ -11,7 +11,7 @@ wdcd-0
 ljh-0
  k-4
 -12
-??-15
+??-24
 ???-82
 pop-15
 k-0
@@ -21,6 +21,9 @@ po-11
 Iskra3-1
 Iskra^-3
 Dani-21
-Is-22
+Is-30
 proba-23
 IsProba-1
+oo-0
+?????-6
+pp-4
