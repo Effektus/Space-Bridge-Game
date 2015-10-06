@@ -8,13 +8,14 @@ namespace Space_Bridge_Test
 {
     public class SpaceBridge
     {
+        public static int points = 0;
         public static void Main()
         {
             Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
 
             const int playfieldWidth = 35;
             const int xCoordinate = 23;
-            const double acceleration = 0.04;
+            const double acceleration = 0.20;
 
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
@@ -38,7 +39,7 @@ namespace Space_Bridge_Test
            
             
             int lives = 3;
-            int points = 0;
+          
             double speed = 10.0;
             bool bridgeHitted = false;
             Random rnd = new Random();
@@ -75,7 +76,6 @@ namespace Space_Bridge_Test
                         }
                         if (wallet[i].Y == bridge.Y && wallet[i].X == bridge.X + 1)
                         {
-                            points++;
                             Console.Beep(678, 200);
                             wallet[i].BridgeHitted = true;
                         }
@@ -138,10 +138,10 @@ namespace Space_Bridge_Test
                 PrintOnPosition(38, 0, "Dollars:" + points);
                 CreateNewObject(wallet);
             }
-            List<string> plScores = PlayersScores(points,playerName);
+            FinalMessages();
             Console.Clear();
-            FinalMessages(points);
-            Console.Clear();
+
+            List<string> plScores = PlayersScores(playerName);                    
             PrintScore(plScores);
 
         }
@@ -171,7 +171,10 @@ namespace Space_Bridge_Test
                 y++;
             }
         }
-
+        /// <summary>
+        /// Print score.
+        /// </summary>
+        /// <param name="plScore">list of score</param>
         private static void PrintScore(List<string> plScore)
         {
             Console.WriteLine("TOP 5 PLAYERS");
@@ -184,14 +187,14 @@ namespace Space_Bridge_Test
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{count}.{score.Key} - {score.Value}$");
                 count++;
-                if (count == 5)
+                if (count == 6)
                 {
                     break;
                 }
             }
         }
 
-        private static List<string> PlayersScores(int points, string nick)
+        private static List<string> PlayersScores(string nick)
         {
             Console.Clear();
             List<string> plScore = new List<string>();
@@ -230,8 +233,7 @@ namespace Space_Bridge_Test
         /// <summary>
         /// Print final messages.
         /// </summary>
-        /// <param name="points"></param>
-        private static void FinalMessages(int points)
+        private static void FinalMessages()
         {
             PrintOnPosition(15, 4, "GAME OVER!!!", ConsoleColor.DarkRed);
             if (points < 10)
@@ -242,10 +244,12 @@ namespace Space_Bridge_Test
             else if (points > 10 && points < 20)
             {
                 PrintOnPosition(10, 5, $"You have {points} dollars.", ConsoleColor.DarkRed);
+                PlayMusicStart();
             }
             else if (points > 20)
             {
                 PrintOnPosition(10, 5, $"You are rich!!! {points} dollars.", ConsoleColor.DarkRed);
+                PlayMusicStart();
             }
             Console.WriteLine();
         }
@@ -270,8 +274,10 @@ namespace Space_Bridge_Test
         {
             for (int i = 0; i < dollars.Count; i++)
             {
+               
                 if (dollars[i].X > 42)
                 {
+                    points++;
                     dollars.Remove(dollars[i]);
                     dollars.Add(new Object(9, 0, "$", ConsoleColor.Green, false));
                 }
