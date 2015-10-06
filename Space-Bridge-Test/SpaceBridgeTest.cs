@@ -19,22 +19,31 @@ namespace Space_Bridge_Test
             Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
             Console.BackgroundColor = ConsoleColor.Black;//color of playfield
+            PrintStartText();
+            PrintOnPosition(20, 5, "GAME", ConsoleColor.Red);
+            PlayMusicStart();
+            Console.Clear();
+
+            int x = 5;
+            int y = 4;
+            Console.SetCursorPosition(x, y);
+            Console.Write("Enter your nickname: ");
+            string playerName = Console.ReadLine();
+            Console.Clear();
 
             int yCoordinate = Console.WindowHeight - 3;
             string symbolForBridge = "___";
             ConsoleColor colorOfBridge = ConsoleColor.White;
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge, false);
-            Console.Write("Enter your nickname: ");
-            string playerName = Console.ReadLine();
+           
+            
             int lives = 3;
             int points = 0;
             double speed = 10.0;
             bool bridgeHitted = false;
             Random rnd = new Random();
 
-            PrintOnPosition(20, 5, "START GAME", ConsoleColor.Red);
-            PlayMusicStart();
-            Console.Clear();
+      
             Object dollar = new Object(9, 0, "$", ConsoleColor.Green, false);
             List<Object> wallet = new List<Object>();
             wallet.Add(dollar);
@@ -136,7 +145,28 @@ namespace Space_Bridge_Test
             PrintScore(plScores);
 
         }
+        private static void PrintStartText()
+        {
+            string[] startText = new string[7];
+            startText[0] = "                                       ";
+            startText[1] = "  $$$$$  $$$$$    $      $$$$   $$$$$  ";
+            startText[2] = "  $   $    $     $ $     $__$     $    ";
+            startText[3] = "   $       $    $   $    $$       $    ";
+            startText[4] = "    $      $   $     $   $  $     $    ";
+            startText[5] = "  ___ $    $  $       $  $   $    $    ";
+            startText[6] = "                                       ";
 
+            int x = 4;
+            int y = 2;
+            foreach (string line in startText)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine(line);
+                Console.Beep(418, 130);
+                y++;
+            }
+        }
         private static void PrintScore(List<string> plScore)
         {
             Console.WriteLine("TOP 5 PLAYERS");
