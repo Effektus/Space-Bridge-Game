@@ -21,7 +21,7 @@ namespace Space_Bridge_Test
             Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
             Console.BackgroundColor = ConsoleColor.Black;//color of playfield
             PrintStartText();
-            PrintOnPosition(20, 5, "GAME", ConsoleColor.Red);
+            PrintOnPosition(19, 6, "G A M E", ConsoleColor.Red);
             PlayMusicStart();
             Console.Clear();
 
