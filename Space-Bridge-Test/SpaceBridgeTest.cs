@@ -40,7 +40,7 @@ namespace Space_Bridge_Test
             
             int lives = 3;
           
-            double speed = 10.0;
+            double speed = 40.0;
             bool bridgeHitted = false;
             Random rnd = new Random();
 
@@ -177,20 +177,55 @@ namespace Space_Bridge_Test
         /// <param name="plScore">list of score</param>
         private static void PrintScore(List<string> plScore)
         {
-            Console.WriteLine("TOP 5 PLAYERS");
-            Console.WriteLine("*************");
-            Dictionary<string, int> listOfPlayers = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
             int count = 1;
-            listOfPlayers.OrderByDescending(p => p.Value);
-            foreach (var score in listOfPlayers)
+            Console.BufferHeight = Console.WindowHeight = 25;
+            Console.BufferWidth = Console.WindowWidth = 25;
+            string highScore = "HIGH SCORE";
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"      {highScore}\n");
+            Dictionary<string, int> listOfPlayers = plScore
+                .Select(l => l.Split('-'))
+                .ToDictionary(a => a[0], a => int.Parse(a[1]));
+            
+            var listOfOrders = listOfPlayers.OrderByDescending(p => p.Value);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("RANK    SCORE    NAME\n");
+            List<ConsoleColor> colors = new List<ConsoleColor>()
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"{count}.{score.Key} - {score.Value}$");
+                ConsoleColor.DarkCyan,
+                ConsoleColor.Blue,
+                ConsoleColor.DarkRed,
+                ConsoleColor.Gray,
+                ConsoleColor.DarkYellow
+            };
+            int i = 0;
+            string appendages = string.Empty;
+            foreach (var score in listOfOrders)
+            {
+                switch (i)
+                {
+                    case 0:
+                        appendages = "ST";
+                        break;
+                    case 1:
+                        appendages = "ND";
+                        break;
+                    case 2:
+                        appendages = "RD";
+                        break;
+                    case 3:
+                    case 4:
+                        appendages = "TH";
+                        break;
+                }
+                Console.ForegroundColor = colors[i];
+                Console.WriteLine($"{count}{appendages, -8}{score.Value, -9}{score.Key}\n");
                 count++;
                 if (count == 6)
                 {
                     break;
                 }
+                i++;
             }
         }
 
@@ -208,7 +243,7 @@ namespace Space_Bridge_Test
             {
                 string[] score = File.ReadAllLines("score.txt");
                 plScore = new List<string>(score);
-                Dictionary<string,int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
+                Dictionary<string, int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
                 if (!dict.ContainsKey(nick))
                 {
                     plScore.Add(nick + "-" + points);
@@ -292,7 +327,7 @@ namespace Space_Bridge_Test
         /// <param name="chance">random number</param>
         private static void AddMoreDollars(int countOfDollars, List<Object> wallet, int chance)
         {
-            if (countOfDollars > 2 && wallet.Count < 3)
+            if (countOfDollars > 1 && wallet.Count < 4)
             {
                 //diff controler
                 if (wallet.TrueForAll(x => x.X < chance))
@@ -301,6 +336,7 @@ namespace Space_Bridge_Test
                     wallet.Add(dolar);
                 }
             }
+      
         }
 
         /// <summary>

@@ -17,3 +17,10 @@ pop-15
 k-0
 l-11
 po-11
+ -0
+Iskra3-1
+Iskra^-3
+Dani-21
+Is-22
+proba-23
+IsProba-1
