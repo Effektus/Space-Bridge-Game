@@ -10,7 +10,7 @@ namespace Space_Bridge_Test
     {
         public static void Main()
         {
-            Console.Title = "Space Bridge (Dolars) by Team Sulorine";
+            Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
 
             const int playfieldWidth = 35;
             const int xCoordinate = 23;
@@ -145,6 +145,9 @@ namespace Space_Bridge_Test
             PrintScore(plScores);
 
         }
+        /// <summary>
+        /// Print start text.
+        /// </summary>
         private static void PrintStartText()
         {
             string[] startText = new string[7];
@@ -158,6 +161,7 @@ namespace Space_Bridge_Test
 
             int x = 4;
             int y = 2;
+
             foreach (string line in startText)
             {
                 Console.SetCursorPosition(x, y);
@@ -167,15 +171,18 @@ namespace Space_Bridge_Test
                 y++;
             }
         }
+
         private static void PrintScore(List<string> plScore)
         {
             Console.WriteLine("TOP 5 PLAYERS");
-            Dictionary<string, int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
-            int count = 0;
-            dict.OrderByDescending(p=>p.Value);
-            foreach (var score in dict)
+            Console.WriteLine("*************");
+            Dictionary<string, int> listOfPlayers = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
+            int count = 1;
+            listOfPlayers.OrderByDescending(p => p.Value);
+            foreach (var score in listOfPlayers)
             {
-                Console.WriteLine(score);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"{count}.{score.Key} - {score.Value}$");
                 count++;
                 if (count == 5)
                 {
@@ -184,14 +191,14 @@ namespace Space_Bridge_Test
             }
         }
 
-        private static List<string> PlayersScores(int points,string nick)
+        private static List<string> PlayersScores(int points, string nick)
         {
             Console.Clear();
             List<string> plScore = new List<string>();
             if (!File.Exists("score.txt"))
             {
                 //PrintOnPosition(0, 3, "New high score: " + nick + "Points: " + points.ToString());
-                plScore = new List<string>{ nick + "-" + points.ToString() };
+                plScore = new List<string>{ nick + "-" + points};
                 File.WriteAllLines("score.txt", plScore);
             }
             else
@@ -201,7 +208,7 @@ namespace Space_Bridge_Test
                 Dictionary<string,int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
                 if (!dict.ContainsKey(nick))
                 {
-                    plScore.Add(nick + "-" + points.ToString());
+                    plScore.Add(nick + "-" + points);
                 }
                 else
                 {
@@ -220,6 +227,10 @@ namespace Space_Bridge_Test
             return plScore;
         }
 
+        /// <summary>
+        /// Print final messages.
+        /// </summary>
+        /// <param name="points"></param>
         private static void FinalMessages(int points)
         {
             PrintOnPosition(15, 4, "GAME OVER!!!", ConsoleColor.DarkRed);
