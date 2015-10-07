@@ -42,7 +42,7 @@ namespace Space_Bridge_Test
             int lives = 3;         
            
             bool bridgeHitted = false;
-            Random rnd = new Random();
+            Random randomnd = new Random();
      
             Object dollar = new Object(9, 0, "$", ConsoleColor.Green, false);
             List<Object> wallet = new List<Object>();
@@ -51,7 +51,7 @@ namespace Space_Bridge_Test
             while (true)
             {
                 SpeedControl(speed, acceleration);
-                int chance = rnd.Next(0, 70);
+                int chance = randomnd.Next(0, 70);
                 AddMoreDollars(points, wallet, chance);
                 MoveTheBridge(bridge, playfieldWidth);
                 PrintNewBridgeState(bridge);
@@ -137,6 +137,7 @@ namespace Space_Bridge_Test
                 PrintOnPosition(38, 0, "Dollars:" + points);
                 CreateNewObject(wallet);
             }
+
             FinalMessages();
             Console.Clear();
 
@@ -144,6 +145,7 @@ namespace Space_Bridge_Test
             PrintScore(plScores);
 
         }
+
         /// <summary>
         /// Print start text.
         /// </summary>
@@ -170,6 +172,7 @@ namespace Space_Bridge_Test
                 y++;
             }
         }
+
         /// <summary>
         /// Print score.
         /// </summary>
@@ -187,7 +190,8 @@ namespace Space_Bridge_Test
                 .Select(l => l.Split('-'))
                 .ToDictionary(a => a[0], a => int.Parse(a[1]));
             
-            var listOfOrders = listOfPlayers.OrderByDescending(p => p.Value);
+            var listOfOrders = listOfPlayers
+                .OrderByDescending(p => p.Value);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("RANK    SCORE    NAME\n");
@@ -244,7 +248,10 @@ namespace Space_Bridge_Test
             {
                 string[] score = File.ReadAllLines("score.txt");
                 plScore = new List<string>(score);
-                Dictionary<string, int> dict = plScore.Select(l => l.Split('-')).ToDictionary(a => a[0], a => int.Parse(a[1]));
+                Dictionary<string, int> dict = plScore
+                    .Select(l => l.Split('-'))
+                    .ToDictionary(a => a[0], a => int.Parse(a[1]));
+
                 if (!dict.ContainsKey(nick))
                 {
                     plScore.Add(nick + "-" + points);
@@ -255,7 +262,9 @@ namespace Space_Bridge_Test
                     {
                         dict[nick] = points;
                     }               
-                    plScore = dict.Select(kvp => kvp.Key + "-" + kvp.Value).ToList();
+                    plScore = dict
+                        .Select(kvp => kvp.Key + "-" + kvp.Value)
+                        .ToList();
                 }
                 File.WriteAllLines("score.txt", plScore);
                 //if (points > dict.Values.Max())
