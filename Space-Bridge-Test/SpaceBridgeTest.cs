@@ -12,12 +12,11 @@ namespace Space_Bridge_Test
         static double speed = 39.5;
         public static void Main()
         {
-            Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
-
             const int playfieldWidth = 35;
             const int xCoordinate = 23;
             const double acceleration = 2;
 
+            Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
             Console.BufferHeight = Console.WindowHeight = 10;
             Console.BufferWidth = Console.WindowWidth = 49;                             
             Console.BackgroundColor = ConsoleColor.Black;
