@@ -14,7 +14,7 @@ namespace Space_Bridge_Test
         {
             const int playfieldWidth = 35;
             const int xCoordinate = 23;
-            const double acceleration = 2;
+            const double acceleration = 0.5;
 
             Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
             Console.BufferHeight = Console.WindowHeight = 10;
@@ -83,7 +83,7 @@ namespace Space_Bridge_Test
                         {
                             lives--;
                             Console.Beep(327, 500); Console.Beep(213, 500);
-                            speed += 5;
+                            speed += 3;
                             wallet.Remove(wallet[i]);
                             if (wallet.Count == 0)
                             {
@@ -369,7 +369,7 @@ namespace Space_Bridge_Test
                     wallet.Add(dolar);
                 }
             }
-            if (chance < 2)
+            if (chance < 1)
             {
                
                     Object dolar = new Object(9, 0, "$", ConsoleColor.Green, false);
