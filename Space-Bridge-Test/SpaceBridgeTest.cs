@@ -50,6 +50,7 @@ namespace Space_Bridge_Test
             PrintBasket();
             while (true)
             {
+                printStones();
                 SpeedControl(speed, acceleration);
                 int chance = randomnd.Next(0, 70);
                 AddMoreDollars(points, wallet, chance);
@@ -144,6 +145,26 @@ namespace Space_Bridge_Test
             List<string> plScores = PlayersScores(playerName);                    
             PrintScore(plScores);
 
+        }
+
+        private static void printStones()
+        {
+            PrintOnPosition(17, 8, "*", ConsoleColor.Cyan);
+            PrintOnPosition(13, 8, "*", ConsoleColor.Cyan);
+            PrintOnPosition(26, 8, "*", ConsoleColor.Cyan);
+            PrintOnPosition(22, 8, "*", ConsoleColor.Cyan);
+            PrintOnPosition(35, 8, "*", ConsoleColor.Cyan);
+            PrintOnPosition(31, 8, "*", ConsoleColor.Cyan);
+
+            string lineOfBank = new string('H', 6);
+            for (int i = 0; i < 10; i++)
+            {
+                PrintOnPosition(0, i, "|", ConsoleColor.White);
+                PrintOnPosition(i, 0, "|", ConsoleColor.White);
+                PrintOnPosition(9, i, "|", ConsoleColor.White);
+                PrintOnPosition(1, 7, " B A N K", ConsoleColor.Yellow);
+                PrintOnPosition(i, 9, "|", ConsoleColor.White);
+            }
         }
 
         /// <summary>
