@@ -8,8 +8,8 @@ namespace Space_Bridge_Test
 {
     public class SpaceBridge
     {
-        public static int points = 0;
-        static double speed = 40.0;
+        public static int points;
+        static double speed = 39.5;
         public static void Main()
         {
             Console.Title = "$CATCH THE MONEY$ by Team Sulorine";
@@ -18,9 +18,9 @@ namespace Space_Bridge_Test
             const int xCoordinate = 23;
             const double acceleration = 2;
 
-            Console.BufferHeight = Console.WindowHeight = 10;//This is the size of the console window height.
-            Console.BufferWidth = Console.WindowWidth = 49;//size of window width.                              
-            Console.BackgroundColor = ConsoleColor.Black;//color of playfield
+            Console.BufferHeight = Console.WindowHeight = 10;
+            Console.BufferWidth = Console.WindowWidth = 49;                             
+            Console.BackgroundColor = ConsoleColor.Black;
             PrintStartText();
             PrintOnPosition(19, 6, "G A M E", ConsoleColor.Red);
             PlayMusicStart();
@@ -37,25 +37,26 @@ namespace Space_Bridge_Test
             string symbolForBridge = "___";
             ConsoleColor colorOfBridge = ConsoleColor.White;
             Object bridge = new Object(xCoordinate, yCoordinate, symbolForBridge, colorOfBridge, false);
-           
-            
-            int lives = 3;         
-           
+                              
             bool bridgeHitted = false;
             Random randomnd = new Random();
-     
+                 
             Object dollar = new Object(9, 0, "$", ConsoleColor.Green, false);
             List<Object> wallet = new List<Object>();
             wallet.Add(dollar);
-            PrintBasket();
+            int lives = 3;
+            int chance = 0;
             while (true)
             {
-                printStones();
+                PrintDecor();
                 SpeedControl(speed, acceleration);
-                int chance = randomnd.Next(0, 70);
+                
+                chance = randomnd.Next(0, 50);
                 AddMoreDollars(points, wallet, chance);
+
                 MoveTheBridge(bridge, playfieldWidth);
                 PrintNewBridgeState(bridge);
+
                 //Moving our alien....
                 for (int i = 0; i < wallet.Count; i++)
                 {
@@ -134,6 +135,7 @@ namespace Space_Bridge_Test
                         PrintNewUpperState(wallet[i]);
                     }
                 }
+
                 PrintOnPosition(38, 1, "Lives:" + lives, ConsoleColor.Red);
                 PrintOnPosition(38, 0, "Dollars:" + points);
                 CreateNewObject(wallet);
@@ -147,8 +149,19 @@ namespace Space_Bridge_Test
 
         }
 
-        private static void printStones()
+        /// <summary>
+        /// Print decor
+        /// </summary>
+        private static void PrintDecor()
         {
+            //Basket
+            PrintOnPosition(41, 7, "\\", ConsoleColor.DarkYellow);
+            PrintOnPosition(41, 8, "|", ConsoleColor.DarkYellow);
+            PrintOnPosition(45, 8, "|", ConsoleColor.DarkYellow);
+            PrintOnPosition(42, 8, "___", ConsoleColor.DarkYellow);
+            PrintOnPosition(45, 7, "/", ConsoleColor.DarkYellow);
+
+            //Stones
             PrintOnPosition(17, 8, "*", ConsoleColor.Cyan);
             PrintOnPosition(13, 8, "*", ConsoleColor.Cyan);
             PrintOnPosition(26, 8, "*", ConsoleColor.Cyan);
@@ -156,13 +169,13 @@ namespace Space_Bridge_Test
             PrintOnPosition(35, 8, "*", ConsoleColor.Cyan);
             PrintOnPosition(31, 8, "*", ConsoleColor.Cyan);
 
-            string lineOfBank = new string('H', 6);
+            //Bank
             for (int i = 0; i < 10; i++)
             {
                 PrintOnPosition(0, i, "|", ConsoleColor.White);
                 PrintOnPosition(i, 0, "|", ConsoleColor.White);
                 PrintOnPosition(9, i, "|", ConsoleColor.White);
-                PrintOnPosition(1, 7, " B A N K", ConsoleColor.Yellow);
+                PrintOnPosition(1, 7, "$B A N K", ConsoleColor.Yellow);
                 PrintOnPosition(i, 9, "|", ConsoleColor.White);
             }
         }
@@ -200,12 +213,10 @@ namespace Space_Bridge_Test
         /// <param name="plScore">list of score</param>
         private static void PrintScore(List<string> plScore)
         {
-            int count = 1;
-            Console.BufferHeight = Console.WindowHeight = 13;
-            Console.BufferWidth = Console.WindowWidth = 49;
+            int count = 1;          
             string highScore = "HIGH SCORE";
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"      {highScore}\n");
+            Console.WriteLine($"{highScore, 25}\n");
 
             Dictionary<string, int> listOfPlayers = plScore
                 .Select(l => l.Split('-'))
@@ -215,7 +226,8 @@ namespace Space_Bridge_Test
                 .OrderByDescending(p => p.Value);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("RANK    SCORE    NAME\n");
+            string titles = "          RANK    SCORE    NAME";
+            Console.WriteLine($"{titles}");
             List<ConsoleColor> colors = new List<ConsoleColor>()
             {
                 ConsoleColor.DarkCyan,
@@ -224,11 +236,11 @@ namespace Space_Bridge_Test
                 ConsoleColor.Gray,
                 ConsoleColor.DarkYellow
             };
-            int i = 0;
+            int index = 0;
             string appendages = string.Empty;
             foreach (var score in listOfOrders)
             {
-                switch (i)
+                switch (index)
                 {
                     case 0:
                         appendages = "ST";
@@ -244,56 +256,60 @@ namespace Space_Bridge_Test
                         appendages = "TH";
                         break;
                 }
-                Console.ForegroundColor = colors[i];
-                Console.WriteLine($"{count}{appendages, -8}{score.Value, -9}{score.Key}\n");
+                Console.ForegroundColor = colors[index];
+                Console.WriteLine($"{count, 11}{appendages, -8}{score.Value, -8}{score.Key}");
                 count++;
                 if (count == 6)
                 {
                     break;
                 }
-                i++;
+                index++;
             }
         }
 
-        private static List<string> PlayersScores(string nick)
+        /// <summary>
+        /// Safe player scores in file
+        /// </summary>
+        /// <param name="playerName">player name</param>
+        /// <returns>list of scores</returns>
+        private static List<string> PlayersScores(string playerName)
         {
-            Console.Clear();
-            List<string> plScore = new List<string>();
+            List<string> playerScore = new List<string>();
             if (!File.Exists("score.txt"))
             {
                 //PrintOnPosition(0, 3, "New high score: " + nick + "Points: " + points.ToString());
-                plScore = new List<string>{ nick + "-" + points};
-                File.WriteAllLines("score.txt", plScore);
+                playerScore = new List<string>{ playerName + "-" + points};
+                File.WriteAllLines("score.txt", playerScore);
             }
             else
             {
                 string[] score = File.ReadAllLines("score.txt");
-                plScore = new List<string>(score);
-                Dictionary<string, int> dict = plScore
+                playerScore = new List<string>(score);
+                Dictionary<string, int> listOfLiders = playerScore
                     .Select(l => l.Split('-'))
                     .ToDictionary(a => a[0], a => int.Parse(a[1]));
 
-                if (!dict.ContainsKey(nick))
+                if (!listOfLiders.ContainsKey(playerName))
                 {
-                    plScore.Add(nick + "-" + points);
+                    playerScore.Add(playerName + "-" + points);
                 }
                 else
                 {
-                    if (dict[nick] < points)
+                    if (listOfLiders[playerName] < points)
                     {
-                        dict[nick] = points;
+                        listOfLiders[playerName] = points;
                     }               
-                    plScore = dict
+                    playerScore = listOfLiders
                         .Select(kvp => kvp.Key + "-" + kvp.Value)
                         .ToList();
                 }
-                File.WriteAllLines("score.txt", plScore);
+                File.WriteAllLines("score.txt", playerScore);
                 //if (points > dict.Values.Max())
                 //{
                 //    PrintOnPosition(0, 3, "New high score: " + nick + "Points: " + points.ToString());
                 //}
             }
-            return plScore;
+            return playerScore;
         }
 
         /// <summary>
@@ -318,18 +334,6 @@ namespace Space_Bridge_Test
                 PlayMusicStart();
             }
             Console.WriteLine();
-        }
-
-        /// <summary>
-        /// Print Basket
-        /// </summary>
-        private static void PrintBasket()
-        {
-            PrintOnPosition(41, 7, "\\", ConsoleColor.White);
-            PrintOnPosition(41, 8, "|", ConsoleColor.White);
-            PrintOnPosition(45, 8, "|", ConsoleColor.White);
-            PrintOnPosition(42, 8, "___", ConsoleColor.White);
-            PrintOnPosition(45, 7, "/", ConsoleColor.White);
         }
 
         /// <summary>

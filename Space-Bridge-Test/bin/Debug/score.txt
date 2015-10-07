@@ -8,3 +8,6 @@ air_iskra-19
 Air_iskra-11
 asd-0
 ASD-0
+Is-6
+-11
+Isi-20
